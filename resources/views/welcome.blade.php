@@ -4,40 +4,27 @@
 
 @section('content') <!-- Faz basicamente a mesma coisa, mas ela coloca tudo que está dentro dessa tag -->
 
-<h1>Bem Vindo</h1>
-@if (22 > 13)
-    <p>Vitória do Brasil</p>
-@endif
-
-<p>{{$nome}}</p> <!-- Chama a chave que foi passada pela rota -->
-
-@if ($nome == "José")
-    <p>O nome é José</p>
-@else
-    <p>O nome não é José, e sim {{ $nome }} e ele {{ $idade }} anos.</p>
-@endif
-
-<!-- Mostra todos os valores do vetor junto cim suas respectivas chaves e diz se for um número par -->
-
-@for ($i = 0; $i < count($arr); $i++)
-    <p>{{ $arr[$i] }} = a chave é {{ $i }}
-        @if ($arr[$i] % 2 == 0)
-            <strong>, esse número é par!</strong> 
-        @endif
-    </p>
-@endfor
-
-@php
-    $nomeSobrenome = "Rubens Lira";
-    echo $nomeSobrenome;
-@endphp
-
-@foreach ($nomes as $n)
-    <p>{{$n}}, chave {{$loop->index}}</p> {{-- Imprime a chave de cada elemento do array --}}
-@endforeach
-
-<!-- Comentário no HTML, esse o usuário vè -->
-{{-- Comentário Blade, esse não --}}
+<div id="search-container" class="col-md-12" >
+    <h1>Busque evento</h1>
+    <form action=""> 
+        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
+    </form>
+</div>
+<div id="search-container" class="col-md-12" >
+    <h2>Próximos Eventos</h2>
+    <p>Veja os eventos dos próximos dias</p>
+    <div id="cards-container" class="row">
+        @foreach($events as $event)
+            <div class="card colm-md-3">
+                <img src="/img/logo.png" alt="{{ $event->title }}">
+                <div class="card-body">
+                    <p class="card-date">13/10/2003</p>
+                    <h5 class="card-title">{{ $event->title }}</h5>
+                </div>
+            </div>   
+        @endforeach
+    </div>
+</div>
 
 <a href="/contato">Contato</a>
 <a href="/produtos">Protutos</a>

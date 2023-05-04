@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController; ///Faz a rota para o arquivo "EventController.php"
 
 Route::get('/', [EventController::class, 'index']);
+
 Route::get('/events/create', [EventController::class, 'create']);
 
-Route::get('/contato', function () { //Acessa pelo de cima
-    return view('contact');          //O sistema volta a de baixo
-});
+Route::get('/contato', [EventController::class, 'contact']); 
+        
 
 Route::get('/produtos', function () {  //O que está dento de apostrofos é a chave que recebe a variável
 

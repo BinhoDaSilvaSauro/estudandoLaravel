@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Event;
+
 class EventController extends Controller {
     public function index() {
-        $nome = "Rubens"; //Cria uma variável
-        $idade = 19;
-        $arr = [10,25,30,45,50,65];
-        $nomes = ["Rubens", "Maria", "José", "Jão"];
-        return view('welcome', [   
-            'nome' => $nome, 
-            'idade' => $idade,
-            'arr' => $arr,
-            'nomes' => $nomes
-        ]); //Dá a variál $nome acesso a página.
+        $events = Event::all(); //Chama todos os eventos da tebela events
+        return view('welcome', ['events'=> $events]);
     }
 
     public function create() {
-        return view('events.create'); //pode colocar "." ou "/" 
+        return view('events/create'); //pode colocar "." ou "/" 
+    }
+
+    public function contact() {
+        $events = Event::all();
+        return view('contact', ['events' => $events]);
     }
 }
